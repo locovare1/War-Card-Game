@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="WarCSP/WarCSP.vcxproj" Id="5bbfd0b8-775c-4ef5-9bcc-d25ceea20f6e" />
+</Solution>
