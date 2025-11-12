@@ -71,6 +71,37 @@ vector<Card> createCards()
   return deck;
 }
 
+vector<Card> shuffleCards()
+{
+  vector<Card> deck = createCards();  // makes all 52 cards
+
+  std::random_device rd;
+  std::mt19937 engine(rd());
+
+  shuffle(deck.begin(), deck.end(), engine); // shuffles them
+
+  return deck;
+}
+
+vector<Card> splitCards()
+{
+  vector<Card> original_vector = shuffleCards();
+  size_t half_size = original_vector.size() / 2;
+
+  vector<Card> first_half(original_vector.begin(), original_vector.begin() + half_size);
+  vector<Card> second_half(original_vector.begin() + half_size, original_vector.begin());
+
+  Player player1;
+  player1.name = "Player1";
+  player1.amountOfCards = half_size;
+  player1.cards = first_half;
+
+  Player player2;
+  player2.name = "Player2";
+  player2.amountOfCards = half_size;
+  player2.cards = second_half;
+}
+
 int getCardValue(Card card, string name, int v)
 {
   if (name == "Ace")

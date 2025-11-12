@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClCompile Include="card.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="card.hpp" />

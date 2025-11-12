@@ -24,6 +24,14 @@ public:
   int id;
 };
 
+class Player
+{
+public:
+  string name;
+  int amountOfCards;
+  vector<Card> cards;
+};
+
 // declare the shuffleCards function
 vector<int> shuffleCards(int size, int min, int max);
 vector<Card> createCards();
