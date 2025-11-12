@@ -14,6 +14,8 @@
 
 using std::vector, std::random_device, std::default_random_engine, std::uniform_int_distribution;
 
+int getCardValue(Card card, string name, int v);
+
 /*
  ace of hearts = 1
  2 of hearts = 2
@@ -54,13 +56,89 @@ vector<Card> createCards()
   const int minId = 1;
   const int maxId = 52;
 
-  string nameList[] = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
-  string shapeList[] = { "Hearts", "Clubs", "Spades", "Diamonds" };
+  vector<string> nameList = { "Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" };
+  vector<string> shapeList = { "Hearts", "Clubs", "Spades", "Diamonds" };
   int valueList[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
   vector<int> idList;
+  int cardId = 0;
 
   for (int i = minId; i <= maxId; i++)
   {
     idList.push_back(i); // put whatever value i is at the time and push it to the end of the vector
   }
+
+  // create all 52 cards
+  
+  for (int s = 0; s < shapeList.size(); ++s)
+  {
+    for (int v = 0; v < nameList.size(); ++v)
+    {
+      Card newCard;
+      newCard.name = nameList[v] + " of " + shapeList[s];
+      newCard.shape = shapeList[s];
+      
+      newCard.value = getCardValue(newCard, nameList[v], v);
+
+      std::cout << newCard.name << " Value: " << newCard.value << std::endl;
+    }
+  }
+
+  return deck;
+}
+
+int getCardValue(Card card, string name, int v)
+{
+  if (name == "Ace")
+  {
+    return card.value = 13;
+  }
+  else if (name == "King")
+  {
+    return card.value = 12;
+  }
+  else if (name == "Queen")
+  {
+    return card.value = 11;
+  }
+  else if (name == "Jack")
+  {
+    return card.value = 10;
+  }
+  else if (name == "Ten")
+  {
+    return card.value = 9;
+  }
+  else if (name == "Nine")
+  {
+    return card.value = 8;
+  }
+  else if (name == "Eight")
+  {
+    return card.value = 7;
+  }
+  else if (name == "Seven")
+  {
+    return card.value = 6;
+  }
+  else if (name == "Six")
+  {
+    return card.value = 5;
+  }
+  else if (name == "Five")
+  {
+    return card.value = 4;
+  }
+  else if (name == "Four")
+  {
+    return card.value = 3;
+  }
+  else if (name == "Three")
+  {
+    return card.value = 2;
+  }
+  else if (name == "Two")
+  {
+    return card.value = 1;
+  }
+
 }

@@ -26,5 +26,6 @@ public:
 
 // declare the shuffleCards function
 vector<int> shuffleCards(int size, int min, int max);
+vector<Card> createCards();
 
 #endif
