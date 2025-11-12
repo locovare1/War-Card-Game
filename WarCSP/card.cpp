@@ -34,21 +34,6 @@ int getCardValue(Card card, string name, int v);
  ... up to king of clubs which is 52
 */
 
-vector<int> shuffleCards(int size, int min, int max)
-{
-  random_device rd; // create a random device to get a random seed for the generator
-  default_random_engine engine(rd()); // init the dre with the generated seed
-  uniform_int_distribution<int> dist(min, max); // define a uid to generate numbers within the range (1, 52)
-
-  auto generateNumber = [&]() { return dist(engine); }; // make a lambda function that calls the uid using the engine to produce a random number
-
-  vector<int> random_numbers(size); // make a vector of integers with the predefined size
-
-  generate(random_numbers.begin(), random_numbers.end(), generateNumber);
-
-  return random_numbers;
-}
-
 vector<Card> createCards()
 {
   vector<Card> deck; // make a vector for all the cards in the deck
@@ -76,10 +61,10 @@ vector<Card> createCards()
       Card newCard;
       newCard.name = nameList[v] + " of " + shapeList[s];
       newCard.shape = shapeList[s];
-      
       newCard.value = getCardValue(newCard, nameList[v], v);
+      newCard.id = ++cardId;
 
-      std::cout << newCard.name << " Value: " << newCard.value << std::endl;
+      std::cout << newCard.name << " Value: " << newCard.value << " ID: " << newCard.id << std::endl;
     }
   }
 
