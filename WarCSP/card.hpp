@@ -33,7 +33,10 @@ public:
 };
 
 // declare the shuffleCards function
-vector<int> shuffleCards(int size, int min, int max);
 vector<Card> createCards();
+vector<Card> shuffleCards();
+vector<Player> splitCards();
+
+std::ostream& operator<<(std::ostream& os, const Card& card);
 
 #endif
