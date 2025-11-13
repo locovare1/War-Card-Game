@@ -84,6 +84,14 @@ vector<Card> shuffleCards()
   return deck;
 }
 
+vector<Card> putDownCard(vector<Card> player1Cards, vector<Card> player2Cards)
+{
+  stack.push_back(player1Cards[0]);
+  stack.push_back(player2Cards[0]);
+
+  return stack;
+}
+
 int getCardValue(Card card, string name, int v)
 {
   if (name == "Ace")

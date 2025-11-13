@@ -21,10 +21,10 @@ int main()
   shuffleCards();
 
   // Get both players
-  vector<Player> players = splitCards();
+  vector<Player*> players = splitCards();
 
-  Player& player1 = players[0];
-  Player& player2 = players[1];
+  Player& player1 = *players[0];
+  Player& player2 = *players[1];
 
   vector<Card>& player1Cards = player1.cards;
   vector<Card>& player2Cards = player2.cards;
@@ -32,35 +32,24 @@ int main()
   // Main game loop
   while (!player1Cards.empty() && !player2Cards.empty())
   {
-    Card topCard1 = player1Cards.front();
-    Card topCard2 = player2Cards.front();
+    vector<Card> player1Stack = putDownCard(player1Cards, player2Cards);
+
+    int half_size = player1Stack.size() / 2;
+
+    vector<Card> topCards1(player1Stack.begin(), player1Stack.begin() + half_size);
+    vector<Card> topCards2(player1Stack.begin() + half_size, player1Stack.end());
 
     cout << "Player1's card: " << player1Cards.front() << std::endl;
     cout << "Player2's card: " << player2Cards.front() << std::endl;
-    if (topCard1.value > topCard2.value)
+
+    if (topCards1.back().value > topCards2.back().value)
     {
-      std::cout << "Player1 Wins!" << std::endl;
-
-      player1Cards.push_back(topCard1);
-      player1Cards.push_back(topCard2);
-
-      player1Cards.erase(player1Cards.begin());
-      player2Cards.erase(player2Cards.begin());
-
-      cin.get();
-
+      Player1Wins(topCards1.back(), topCards2.back(), player1Cards, player2Cards);
     }
-    else if (topCard1.value < topCard2.value)
+
+    else if (topCards1.back().value < topCards2.back().value)
     {
-      std::cout << "Player2 Wins!" << std::endl;
-
-      player2Cards.push_back(topCard1);
-      player2Cards.push_back(topCard2);
-
-      player1Cards.erase(player1Cards.begin());
-      player2Cards.erase(player2Cards.begin());
-
-      cin.get();
+      Player1Wins(topCards1.back(), topCards2.back(), player1Cards, player2Cards);
     }
     else
     {

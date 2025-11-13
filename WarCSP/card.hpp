@@ -6,6 +6,8 @@
  11/11/2025
 */
 
+#pragma once
+
 #ifndef CARD_H
 #define CARD_H
 
@@ -32,10 +34,19 @@ public:
   vector<Card> cards;
 };
 
+// creating thge players
+extern Player* player1;
+extern Player* player2;
+
+vector<Card> stack;
+
 // declare the shuffleCards function
 vector<Card> createCards();
 vector<Card> shuffleCards();
-vector<Player> splitCards();
+vector<Player*> splitCards();
+
+vector<Card> putDownCard(vector<Card> player1Cards, vector<Card> player2Cards);
+vector<Card> Player1Wins(Card topCard1, Card topCard2, vector<Card>& player1Cards, vector<Card>& player2Cards);
 
 std::ostream& operator<<(std::ostream& os, const Card& card);
 
